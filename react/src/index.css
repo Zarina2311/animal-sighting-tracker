@@ -1,0 +1,61 @@
+body {
+  text-align: center;
+  margin: 3em;
+  background-color: rgb(231, 164, 140);
+  color: white;
+  font-size: 20px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+h1 {
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-size: 55px;
+}
+
+h2 {
+  font-family: Georgia, "Times New Roman", Times, serif;
+}
+
+p {
+  margin-top: 2em;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-weight: bolder;
+}
+
+/* Input text */
+input[type="text"] {
+  padding: 5px;
+  margin: 9px 10px;
+  border: 1px solid #ccc;
+  border-radius: 9px;
+  font-size: 13px;
+  outline: none;
+  color: rgba(90, 43, 67, 0.884);
+}
+
+/* Submit button */
+input[type="submit"] {
+  background-color: rgba(165, 66, 66, 0.884);
+  color: white;
+  padding: 8px 20px;
+  margin: 15px;
+  border: none;
+  border-radius: 13px;
+  cursor: pointer;
+  outline: none;
+  box-shadow: 0 5px 4px rgba(252, 250, 250, 0.438);
+}
+
+/* Checkbox */
+input[type="checkbox"] {
+  padding: 8px;
+  margin: 10px 10px;
+  border: 5px solid #ccc;
+  border-radius: 9px;
+}

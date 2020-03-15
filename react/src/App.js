@@ -28,11 +28,16 @@ function App() {
             return (
               <tr key={sighting.id}>
                 <td>{sighting.id}</td>
-                <td>{sighting.date_time}</td>
-                <td>{sighting.ind_seen_id}</td>
+                <td>{new Date(sighting.date_time).toLocaleDateString()}</td>
+                <td>
+                  <a href={sighting.link}>{sighting.ind_seen_id}</a>
+                </td>
                 <td>{sighting.location}</td>
                 <td>{sighting.email}</td>
                 <td>{sighting.healthy}</td>
+                <td>
+                  <img src={sighting.photo} width="100" />
+                </td>
               </tr>
             );
           })}

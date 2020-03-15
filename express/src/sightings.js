@@ -7,6 +7,7 @@ class AnimalSighting {
   }
 
   addSighting(date_time, ind_seen_id, location, email, healthy) {
+    console.log(date_time, ind_seen_id, location, email, healthy);
     return db.one(
       "INSERT INTO sightings (date_time, ind_seen_id, location, email, healthy) VALUES ($1, $2, $3, $4, $5) RETURNING id",
       [date_time, ind_seen_id, location, email, healthy]

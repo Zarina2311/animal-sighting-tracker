@@ -66,7 +66,9 @@ CREATE TABLE public.sightings (
     email text,
     ind_seen_id integer,
     id integer NOT NULL,
-    date_time timestamp without time zone
+    date_time timestamp without time zone,
+    link text,
+    photo text
 );
 
 
@@ -158,18 +160,13 @@ ALTER TABLE ONLY public.species ALTER COLUMN id SET DEFAULT nextval('public.spec
 --
 
 COPY public.individuals (id, nickname, rec_created, species_id) FROM stdin;
-3	spider monkey	2001-05-13 00:00:00	5
-1	big elephant	1999-07-23 00:00:00	10
-10	cata	2007-11-23 00:00:00	8
 9	tigris	2004-03-15 00:00:00	3
 2	eye tuna	1996-02-03 00:00:00	6
 12	typus	2009-07-24 00:00:00	1
-6	pongo	2002-02-14 00:00:00	9
 4	big grey	1998-09-20 00:00:00	4
-11	big fish	2002-12-13 00:00:00	12
-5	beringei	2003-01-22 00:00:00	7
 8	red ailu	2005-08-23 00:00:00	2
-7	ailu	1999-07-23 00:00:00	11
+3	monk	2001-05-13 00:00:00	5
+1	pongo	1999-07-23 00:00:00	10
 \.
 
 
@@ -177,21 +174,12 @@ COPY public.individuals (id, nickname, rec_created, species_id) FROM stdin;
 -- Data for Name: sightings; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.sightings (location, healthy, email, ind_seen_id, id, date_time) FROM stdin;
-Russia	t	danny@animalhelp.com	5	8	2015-08-19 00:00:00
-South Africa	t	natalia.ann@gmail.com	11	10	2018-05-21 00:00:00
-Russia	t	john.rodrigues@yosemite.com	8	11	2014-07-28 00:00:00
-Malaysia	f	tatiana.long@yosemite.com	1	5	2013-07-14 00:00:00
-Congo	f	ellen.degen@wwf.com	7	7	2020-01-05 00:00:00
-Indonesia	t	roger.smith@gmail.com	3	6	2018-02-03 00:00:00
-Mexico	t	zarina2311@mail.ru	4	13	2020-03-15 00:00:00
-Madagaskar	f	clara.rodgers@wwf.com	6	3	2017-08-13 00:00:00
-Cameroon	f	bob@mail.ru	1	15	2020-03-15 00:00:00
-Namibia	t	bob@animalhelp.com	4	2	2011-09-05 00:00:00
-Tanzania	t	jack@wwf.com	9	1	2016-02-03 00:00:00
-Nigeria	t	diego.rubio@animalhelp.com	10	4	2015-10-23 00:00:00
-Mozambique	f	kristine.lee@wwf.com	2	9	2011-09-11 00:00:00
-Vietnam	t	bob@mail.ru	6	16	2020-03-15 00:00:00
+COPY public.sightings (location, healthy, email, ind_seen_id, id, date_time, link, photo) FROM stdin;
+Tanzania	t	roger.smith@gmail.com	3	6	2018-02-03 00:00:00	https://en.wikipedia.org/wiki/Tiger	https://c402277.ssl.cf1.rackcdn.com/photos/8620/images/story_full_width/MID_204422.jpg?1428000540
+Mozambique	f	kristine.lee@wwf.com	2	9	2011-09-11 00:00:00	https://en.wikipedia.org/wiki/Red_panda	https://c402277.ssl.cf1.rackcdn.com/photos/806/images/story_full_width/SCR_47384.jpg?1345530917
+Namibia	t	bob@animalhelp.com	4	2	2011-09-05 00:00:00	https://en.wikipedia.org/wiki/Sumatran_elephant	https://c402277.ssl.cf1.rackcdn.com/photos/1732/images/story_full_width/Asian_Elephant_8.13.2012_Hero_And_Circle_HI_247511.jpg?1345551842
+Malaysia	f	tatiana.long@yosemite.com	1	5	2013-07-14 00:00:00	https://en.wikipedia.org/wiki/Whale_shark	https://c402277.ssl.cf1.rackcdn.com/photos/4999/images/story_full_width/Carlos_Aguilera.jpg?1377793759
+Vietnam	t	mary.lee@animalhelp.com	2	34	2016-04-18 00:00:00	https://en.wikipedia.org/wiki/Bigeye_tuna	https://c402277.ssl.cf1.rackcdn.com/photos/2541/images/story_full_width/Bigeye_tuna_with_yellowfin_western_Pacific_Ocean_ISSF_2012.jpg?1348249089
 \.
 
 
@@ -206,12 +194,7 @@ tiger	panthera tigris sondaica	3000	CE	2004-03-15 00:00:00	3
 elephant	elephas maximus sumatranus	3500	EN	1998-09-20 00:00:00	4
 black spider monkey	ateles paniscus	2500	VL	2001-05-13 00:00:00	5
 bigeye tuna	thunnus obesus	2500	VL	1996-02-03 00:00:00	6
-gorilla	gorilla beringei graueri	3000	CE	2003-01-22 00:00:00	7
-turtle	eretmochelys imbricata	2500	CE	2007-11-23 00:00:00	8
-orangutan	pongo abelii	3000	CE	2002-02-14 00:00:00	9
 african elephant	loxodonta africana	2000	VL	1999-07-23 00:00:00	10
-panda	ailuropoda melanoleuca	3000	VL	1999-07-23 00:00:00	11
-whale	balaena	2000	EN	2002-12-13 00:00:00	12
 \.
 
 
@@ -226,7 +209,7 @@ SELECT pg_catalog.setval('public.individuals_id_seq', 13, true);
 -- Name: sightings_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.sightings_id_seq', 17, true);
+SELECT pg_catalog.setval('public.sightings_id_seq', 34, true);
 
 
 --
@@ -265,7 +248,7 @@ ALTER TABLE ONLY public.species
 --
 
 ALTER TABLE ONLY public.individuals
-    ADD CONSTRAINT individuals_species_id_fkey FOREIGN KEY (species_id) REFERENCES public.species(id);
+    ADD CONSTRAINT individuals_species_id_fkey FOREIGN KEY (species_id) REFERENCES public.species(id) ON DELETE CASCADE;
 
 
 --
@@ -273,7 +256,7 @@ ALTER TABLE ONLY public.individuals
 --
 
 ALTER TABLE ONLY public.sightings
-    ADD CONSTRAINT sightings_ind_seen_id_fkey FOREIGN KEY (ind_seen_id) REFERENCES public.individuals(id);
+    ADD CONSTRAINT sightings_ind_seen_id_fkey FOREIGN KEY (ind_seen_id) REFERENCES public.individuals(id) ON DELETE CASCADE;
 
 
 --

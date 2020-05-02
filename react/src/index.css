@@ -34,6 +34,9 @@ input[type="text"] {
   margin: 9px 10px;
   border: 1px solid #ccc;
   border-radius: 9px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
   font-size: 13px;
   outline: none;
   color: rgba(90, 43, 67, 0.884);

@@ -9,21 +9,21 @@ function AddSightingForm() {
       ind_seen_id: event.target.ind_seen_id.value,
       location: event.target.location.value,
       email: event.target.email.value,
-      healthy: event.target.healthy.checked
+      healthy: event.target.healthy.checked,
     });
 
     fetch("http://localhost:3000/sightings", {
       headers: {
-        Accept: "application/json"
+        Accept: "application/json",
       },
       body: newRecord,
-      method: "POST"
+      method: "POST",
     });
   }
 
   return (
     <form onSubmit={handleSubmit}>
-      <p>Add new sighting</p>
+      <h2>Add new sighting</h2>
       <label>Date and time:</label>
       <input type="text" name="date_time" />
       <br />

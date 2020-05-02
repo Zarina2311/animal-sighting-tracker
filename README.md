@@ -2,7 +2,7 @@
 
 Full-stack web app written in React, Node/Express, and PostgreSQL (PERN).
 
-![Screenshot](https://github.com/Zarina2311/animal-sighting-tracker/raw/master/react/public/animal-tracker.png=250x)
+![Screenshot](https://github.com/Zarina2311/animal-sighting-tracker/raw/master/react/public/animal-tracker.png)
 
 ## Features include:
 

@@ -1,6 +1,8 @@
 # Animal Sighting Tracker
 
-Full-stack app with a React frontend, Node/Express backend, and Postgres database (PERN).
+You can view the app here: https://zarina2311.github.io/animal-sighting-tracker/
+
+Full-stack app with a React frontend, Node/Express backend, and PostgreSQL database (PERN).
 Each set of instructions begins at animal-sighting-tracker folder.
 
 ## Installation

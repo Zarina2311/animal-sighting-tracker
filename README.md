@@ -1,6 +1,6 @@
 # Animal Sighting Tracker
 
-Full-stack web app written in React, Node/Express, and PostgreSQL (PERN).
+Full-stack web app written in React.js, Node.js, Express.js, and PostgreSQL.
 
 ![Screenshot](https://github.com/Zarina2311/animal-sighting-tracker/raw/master/react/public/animal-tracker.png)
 
@@ -15,7 +15,9 @@ Full-stack web app written in React, Node/Express, and PostgreSQL (PERN).
 
 ### Database
 
+```
 Run db.sql on postgres
+```
 
 ### Express
 
@@ -48,3 +50,4 @@ npm start
 ```
 
 Once both servers are running (Express on port 3000 and React on 3001), open http://localhost:3001 to view the app in the browser.
+To see a list of all recorded sightings, open http://localhost:3000/sightings.
